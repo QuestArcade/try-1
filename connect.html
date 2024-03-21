@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wallet</title>
+  <style>
+    body {
+      background-color: #ffcccc; /* Soft red background */
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      text-align: center;
+      margin-top: 100px;
+    }
+    .connect-button {
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .connect-button:hover {
+      background-color: #45a049; /* Darker green */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to Our Web3 Wallet</h1>
+    <p>Please connect your MetaMask wallet to proceed.</p>
+    <button class="connect-button" id="connectButton">Connect your MetaMask Wallet</button>
+  </div>
+
+  <script>
+    async function checkAndRedirect() {
+      // Check if MetaMask is installed
+      if (window.ethereum) {
+        try {
+          // Request access to user's MetaMask accounts
+          await window.ethereum.request({ method: 'eth_requestAccounts' });
+          // Redirect to index.html upon successful connection
+          window.location.href = "index.html";
+        } catch (error) {
+          console.error("Error connecting to MetaMask:", error);
+          // Handle error (e.g., display error message to user)
+        }
+      } else {
+        // MetaMask is not installed, display an error message or prompt user to install MetaMask
+        console.error("MetaMask is not installed.");
+        // Handle error (e.g., display error message to user)
+      }
+    }
+
+    document.getElementById("connectButton").addEventListener("click", checkAndRedirect);
+
+    // Check if MetaMask is already connected when the page loads
+    window.addEventListener('load', async () => {
+      if (window.ethereum && window.ethereum.selectedAddress) {
+        // MetaMask is already connected, redirect to index.html
+        window.location.href = "index.html";
+      } else {
+        // Check MetaMask connection every 2 seconds
+        setInterval(async () => {
+          if (window.ethereum && window.ethereum.selectedAddress) {
+            // MetaMask is connected, redirect to index.html
+            window.location.href = "index.html";
+          }
+        }, 2000);
+      }
+    });
+  </script>
+</body>
+</html>

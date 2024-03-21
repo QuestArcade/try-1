@@ -1,5 +1,4 @@
-/* Shelf (Works best in Webkit) */
-.shelf {
+.road {
     position: relative;
     width: 721px;
     /* border-bottom: 13px solid #24252a; */
@@ -10,7 +9,7 @@
     background: transparent;
 }
 
-.shelf:after {
+.road:after {
 	position: absolute;
 	bottom: -13px;
 	left: 34px;
@@ -26,13 +25,13 @@
 	z-index: -1;
 }
 
-.shelf > div {
+.road > div {
     border-bottom: 23px solid #303138;
     position: relative;
     z-index: 1;
 }
 
-.shelf > div:before {
+.road > div:before {
     content: '';
     width: 0px;
     height: 0px;
@@ -48,7 +47,7 @@
     transform:rotate(360deg);
 }
 	
-.shelf > div:after {
+.road > div:after {
     content: '';
     width: 0px;
     height: 0px;
@@ -61,25 +60,27 @@
     z-index: 2;
 }
 
-.shelf > div > * {
+.road > div > * {
     position: relative;
     z-index: 2;
     top: 18px;
 }
 
-
-/* Default case template (Bluray) */
-
-.case {
+.place {
 	display: inline-block;
 	width: 142px;
 	height: 179px;
 	border-radius: 5px;
 	position: relative;
 	z-index: 1;
+    transition: transform 0.3s ease;
 }
 
-.case:after {
+.place:hover {
+    transform: scale(1.1); /* Increase size to 110% when hovered */
+}
+
+.place:after {
 	width: 100%;
 	height: 10px;
 	border-radius: 20px;
@@ -96,11 +97,12 @@
 	left: 0;
 }
 
-.case > div {
+.place > div {
     width: 100%;
     height: 100%;
-    background: #46b0e9;
-    background: rgba(70, 176, 233, 0.8);
+    /*background: #46b0e9; */
+    /*background: rgba(70, 176, 233, 0.8); */
+    background: rgba(104, 104, 104, 0.8);
     border-radius: 8px 8px 5px 5px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -110,7 +112,7 @@
     position: relative;
 }
 
-.case > div:after {
+.place > div:after {
     content: "";
     position: absolute;
     top: 0;
@@ -126,11 +128,10 @@
     transform: rotate(30deg);
 }
 	
-.case > div > .logo {
+.place > div > .logo {
     position: absolute;
     top: 5px;
     left: 0;
     width: 100%;
 }
-		
-				
+			
